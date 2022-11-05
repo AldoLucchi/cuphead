@@ -1,0 +1,578 @@
+/* Fuentes */
+
+@font-face {
+    font-family: "Avenir";
+    src: url("../fonts/Avenir-Book.ttf")
+}
+
+
+/* Reseteo CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+
+
+/* Estilos generales */
+    html {
+        font-size: 20px;
+    }
+
+    @media (max-width: 440px) {
+        html {
+            font-size: 18px;
+        }
+    }
+
+body {
+    font-family: "Avenir", sans-serif;
+    background-color: #231f20;
+}
+
+img {
+    max-width: 100%;
+}
+
+h2 {
+    color: white;
+}
+
+
+
+
+/* Componente Heroe*/
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+@keyframes heroAnimation {
+    0% {opacity: 0;
+        animation-timing-function: ease-in;}
+    12% {opacity: 1;}
+    25% {transform: scale(1.2);}
+    75% {opacity: 0;transform: scale(1.1);}
+    100% {opacity: 0;}
+}
+
+.hero div {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: heroAnimation 18s infinite;
+}
+
+.hero div:nth-child(1) {
+    background-image: url('../img/front1.png');
+}
+
+.hero div:nth-child(2) {
+    background-image: url('../img/front2.jpeg');
+    animation-delay: 6s;
+}
+
+.hero div:nth-child(3) {
+    background-image: url('../img/front3.jpg');
+    animation-delay: 12s;
+}
+
+.hero .hero-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: none;
+    opacity: 1;
+    width: 30%;
+    height: auto;
+}
+
+.hero .hero-down img {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: none;
+    opacity: 1;
+    width: 10%;
+    height: auto;
+}
+
+@media (max-width: 720px) {
+    .hero .hero-logo {
+        width: 60%;
+    }
+    .hero .hero-down img {
+        width: 25%;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero .hero-logo {
+        width: 80%;
+    }
+    .hero .hero-down img {
+        width: 45%;
+    }
+}
+
+/* Header */
+
+header {
+    background-color: rgb(54, 54, 54);
+    box-shadow: 1.5px 1.5px ;
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+    transition: 500ms all ease-in-out;
+}
+
+@media (max-width: 620px) {
+    header {
+        height: 63px;
+    }
+}
+
+
+header.transparente {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+header img {
+    height: 75px;
+    width: auto;
+}
+
+header nav a {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    margin-left: 1em;
+    transition: 300ms ease-in-out all;
+}
+
+header.transparente nav a {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    margin-left: 1em;
+    transition: 300ms ease-in-out all;
+}
+
+header nav a.activo,
+header nav a:hover {
+    color: yellow;
+    font-size: 1.6em;
+    font-weight: bolder;
+}
+
+header.transparente nav a.activo,
+header.transparente nav a:hover {
+    color: yellow;
+}
+
+/* Botón burger */
+
+#burger {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+}
+
+#burger .barra {
+    width: 30px;
+    height: 2px;
+    margin: 6px;
+    background-color: yellow;
+    transition: 400ms all ease-in-out
+}
+
+#burger.abierto .barra {
+    background-color: white;
+}
+
+#burger.abierto .barra.superior {
+    transform: translateY(8px) rotateZ(45deg);
+}
+
+#burger.abierto .barra.media {
+    width: 0;
+}
+
+#burger.abierto .barra.inferior {
+    transform: translateY(-8px) rotateZ(-45deg);
+}
+
+@media (max-width: 620px) {
+    #burger {
+        display: block;
+    }
+
+    header {
+        justify-content: flex-end;
+    }
+
+    header nav {
+        display: none;
+    }
+
+    header img {
+        margin-top: 0.5rem;
+    }
+}
+
+/* Menú lateral */
+
+.menu {
+    width: 360px;
+    height: 100vh;
+    background-color: #424242;
+    position: fixed;
+    top: 0;
+    left: -360px;
+    padding-top: 40px;
+    transition: all 700ms ease-in-out;
+}
+
+.menu.abierto {
+    left: 0;
+}
+
+.menu nav {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu nav a {
+    padding: 0.6rem 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.1rem;
+    transition: 300ms all ease-in-out;
+}
+
+.menu nav a:hover {
+    color: white;
+}
+
+.menu .copyright {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+/* Layout */
+
+.primera {
+    margin-top: 100vh;
+}
+
+#pr {
+    margin-top: -95px;
+    padding-bottom: 95px;
+}
+
+.fila {
+    display: flex;
+    padding: 2rem 1rem;
+}
+
+.col-auto {
+    width: 100vh;
+    margin-top: 20%;
+    margin-left: 25%;
+    margin-right: 50%;
+}
+
+
+.col-100 {
+    width: 100%;
+}
+
+.col-75 {
+    width: 75%;
+    padding: 0.5rem 1rem;
+}
+
+.col-66 {
+    width: 66.66666%;
+    padding: 0.5rem 1rem;
+}
+
+
+.col-50 {
+    width: 50%;
+    height: auto;
+    padding: 0.5rem 1rem;
+}
+
+
+.col-33 {
+    width: 33.333333%;
+    padding: 0.5rem 1rem;
+}
+
+.col-25 {
+    width: 75%;
+    padding: 0.5rem 1rem;
+}
+
+
+@media (max-width: 720px) {
+    .fila {
+        flex-direction: column;
+        padding: 1rem 0.5rem;
+    }
+
+    .col-33
+    {
+        width: 100%;
+    }
+    .col-66 {
+        width: 100%;
+    }
+    .col-100 {
+        width: 100%;
+    }
+    .col-75,
+    .col-50 {
+        width: 100%;
+    }
+    .col-25{
+        width: 100%;
+    }
+}
+
+.col-66 p {
+    color: white;
+}
+
+.col-33 {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1.5px 1.5px ;
+}
+
+.flex-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#diferente1 {
+    order: 2;
+}
+
+#diferente2 {
+    order: 1;
+}
+
+@media (max-width: 720px) {
+    #diferente1 {
+        order: 1}
+    #diferente2 {
+        order: 2;
+    }
+}
+
+/* Parallax */
+
+.fila.parallax {
+    background-image: url(../img/property5.jpg);
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 16rem 10.1rem;
+    margin-top: 2rem;
+}
+
+.fila.parallax div {
+    background-color: rgba(255, 255, 255, 0.70);
+    padding: 2rem;
+}
+
+.fila.parallax div img {
+    width: 50%;
+    margin-left: 22%;
+    margin-right: 30%;
+}
+
+
+/* Capa de navegacion */
+
+.capa-nav img {
+    width: 66%;
+    margin-bottom: 1em;
+}
+
+.capa-nav a {
+    border: 1px solid yellow;
+    background-color: #424242;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: normal;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: all ease-in-out 400ms;
+}
+
+.capa-nav a:hover {
+    background-color: #424242;
+    color: yellow;
+}
+
+/* Footer */
+
+#footer {
+    background-color: #231f20;
+}
+
+
+footer .col-33 {
+    background-color: #231f20 !important;
+    border-radius: 0 !important;
+    box-shadow: 0 !important;
+}
+
+footer p {
+    color: white;
+}
+
+footer p:first-child {
+    color: yellow;
+    font-weight: bold;
+}
+
+/* Cards */
+
+.fila.grid {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 360px);
+    grid-gap: 1.5rem;
+    justify-content: center;
+}
+
+.card {
+    width: 360px;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 4px grey;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background-color: white;    
+}
+
+.card img {
+    height: 320px;
+}
+
+.card .footer-card {
+    padding: 0.8rem;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card .footer-card p {
+    margin-bottom: 0.5rem;
+}
+
+.card .footer-card p:first-child {
+    font-weight: bold;}
+
+.card .footer-card a {
+    background-color: grey;
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 0.3em;
+    padding: 0.5em 1em;
+    align-self: center;
+    transition: 400ms ease-in-out all;
+}
+
+.card .footer-card a:hover {
+    font-size: 1rem;
+    font-weight: bolder;
+    color: yellow;
+}
+
